@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.idblock{
+  border: 2px solid hsla(0, 0%, 0%, 0.668);
+  border-radius: 5px;
+  min-width: 200px;
+  min-height: 250px;
+  width: 248px;
+  height: 310px;
+  padding-top: 15px;
+  position: relative;
+  cursor: pointer;
+  margin: 10px;
+  display: inline-block;
+  overflow:auto;
+}
+
+.profilepic{
+  border-radius: 100%;
+  min-width: 135px;
+  min-height: 135px;
+  width: 155px;
+  height: 155px;
+  position: relative;
+  left:50%;
+  transform: translateX(-50%);
+  
+}
+
+.idblock h3{
+  color: #4f4e4e;
+  margin-left:10px;
+}
+
+.idblock h2{
+  margin-left: 10px;
+}
+</style>
+
+
+<body>
+    <div id="profilearea"></div>
+</body>
+
+<script>
+
+info = [['1','User1','New Delhi','Working at Google','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
+['2','User2','Bangalore','Working at Oneplus','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
+['3','User3','Mumbai','Working at Google','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
+['4','User4','United Kingdom','Working at Meta','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
+['5','User5','USA','Working at Microsoft','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
+['6','User6','New Delhi','Studying B.Tech at BVCOE','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg']]
+
+
+
+    var profilearea = document.getElementById('profilearea')
+    for (let i of info){
+        console.log(i)
+        let div = document.createElement('div')
+        profilearea.appendChild(div)
+        div.className = 'idblock'
+        div.id = i[0]
+        let divnew = document.getElementById(i[0])
+        let img = document.createElement('img')
+        img.src = i[4]
+        img.className = 'profilepic'
+        let h2 = document.createElement('h2')
+        h2.textContent = i[1]
+        let h3 = document.createElement('h3')
+        h3.textContent = i[2]
+        let br = document.createElement('br')
+        h3.appendChild(br)
+        let label = document.createElement('label')
+        label.textContent = i[3]
+        label.id= i[0]
+        label.style.cursor = 'pointer'
+        h3.appendChild(label)
+
+        divnew.appendChild(img)
+        divnew.appendChild(h2)
+        divnew.appendChild(h3)
+
+        const childElements = divnew.children;
+        for (let i = 0; i < childElements.length; i++) {
+            childElements[i].id = divnew.id;
+        }
+        divnew.addEventListener('click', (event)=> openprofilepage(event))
+        
+        
+
+    }
+
+
+
+
+    function openprofilepage(event){
+        //Make the function to show the profile page of each user on clicking
+        localStorage.setItem('id',event.target.id)
+        console.log(localStorage.getItem('id'))
+        //redirect to the new profile page and retrieve the id from the local storage followed by retrieving all the data for that particular id
+    }
+
+
+
+
+</script>
+</html>
