@@ -265,51 +265,51 @@ input:checked + label{
 
 
 
-    		
-<div class="container">
+                
+    <div class="container">
 
-<div class="screen">
+        <div class="screen">
 
-<div class="screen__content">
-<div class='toggle-switch'>
-<input type='radio' checked name='tog' id='toggle1' value='1'/>
-<label for='toggle1' class="fa fa-user-plus"></label>
+            <div class="screen__content">
+            <div class='toggle-switch'>
+            <input type='radio' checked name='tog' id='toggle1' value='1'/>
+            <label for='toggle1' class="fa fa-user-plus"></label>
 
-<input type='radio' name='tog' id='toggle2' value='2'/>
-<label for='toggle2' class="fa fa-sign-in"></label>
-<div class='toggle-shadow'></div>
+            <input type='radio' name='tog' id='toggle2' value='2'/>
+            <label for='toggle2' class="fa fa-sign-in"></label>
+            <div class='toggle-shadow'></div>
 
-</div>
-<form class="login" id='login'>
+            </div>
+            <form class="login" id='login'>
 
-<div class="login__field">
-<i class="login__icon fa fa-user"></i>
-<input type="text" id='email' class="login__input" required placeholder="Email">
-<button class="button login__submit" id="otpbtn" min="100000" max="999999" onClick="sendotp()">
-<span class="button__text">Get OTP</span>
-<i class="button__icon fa fa-chevron-right"></i>
-</button>	
-</div>
+                <div class="login__field">
+                    <i class="login__icon fa fa-user"></i>
+                    <input type="text" id='email' class="login__input" required placeholder="Email">
+                    <button class="button login__submit" id="otpbtn" onClick="sendotp()">
+                        <span class="button__text">Get OTP</span>
+                        <i class="button__icon fa fa-chevron-right"></i>
+                    </button>	
+                </div>
 
-<div class="login__field" id="otpdiv">
-<i class="login__icon fa fa-lock"></i>
-<input type="number" id='otpbox' class="login__input" placeholder="OTP">
-</div>
-<button class="button login__submit" onClick="verifyotp()">
-<span class="button__text">Sign Up Now</span>
-<i class="button__icon fa fa-chevron-right"></i>
-</button>				
-</form>
+                <div class="login__field" id="otpdiv">
+                    <i class="login__icon fa fa-lock"></i>
+                    <input type="number" id='otpbox' class="login__input" placeholder="OTP" min="100000" max="999999">
+                </div>
+                <button class="button login__submit" onClick="verifyotp()">
+                    <span class="button__text">Sign Up Now</span>
+                    <i class="button__icon fa fa-chevron-right"></i>
+                </button>				
+            </form>
 
-</div>
-<div class="screen__background">
-<span class="screen__background__shape screen__background__shape4"></span>
-<span class="screen__background__shape screen__background__shape3"></span>		
-<span class="screen__background__shape screen__background__shape2"></span>
-<span class="screen__background__shape screen__background__shape1"></span>
-</div>		
-</div>
-</div>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
+        </div>
+    </div>
 
     
 
@@ -407,7 +407,7 @@ src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
             let otpentered = document.getElementById('otpbox').value
             if (otpentered == OTP){
                 console.log('fdsgsd')
-                //redirect to sign up page
+                document.location.href = './signupinfo.html'
             }
             else{
                 alert("Wrong OTP entered!")
