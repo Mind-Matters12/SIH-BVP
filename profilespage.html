@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href=".\font-awesome-4.7.0\css\font-awesome.min.css">
+
 </head>
 
 <style>
@@ -21,9 +23,9 @@
   padding-top: 15px;
   position: relative;
   cursor: pointer;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
   display: inline-block;
-  overflow:auto;
+  overflow:hidden;
 }
 
 .profilepic{
@@ -46,70 +48,296 @@
 .idblock h2{
   margin-left: 10px;
 }
+
+.menuicon{
+  font-size: 2rem;;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#userimg{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
+  position:absolute;
+  right:50px;
+  transform: translateY(-25%);  
+}
+
+#userinfo{
+  position:absolute;
+  bottom:0px;
+  transform: translateY(-100%);
+  border-top: 2px solid #818181;
+  width:100%;
+}
+
+#profilearea{
+  padding-top: 50px;
+}
+
+.login__icon {
+	position: absolute;
+	top: 30px;
+	color: #414143;
+}
+
+.login__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+  font-size: 16px;
+	font-weight: 700;
+	width: 90%;
+	transition: .2s;
+}
+
+.login__input:active,
+.login__input:focus,
+.login__input:hover {
+	outline: none;
+	border-bottom-color: #6A679E;
+}
+
+.login__field {
+	padding: 20px 0px;	
+	position: relative;	
+  display:inline-block;
+  margin-left:20px;
+  width: 90%;
+}
+
+#searchicon{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
 </style>
 
 
 <body>
-    <div id="profilearea"></div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Explore</a>
+    <a href="#">Community</a>
+    <a href="#">About Us</a>
+    <a href="#" id="userinfo"><label id="username"><br>User1</label><img id="userimg" src="https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"></a>
+
+  </div>
+
+  
+  <i class="fa fa-bars menuicon" onclick="openNav()"></i>
+  
+  <div class="login__field">
+  <button class="login__icon fa fa-search" id="searchicon"></button>
+  <input type="text" id='searchbox' class="login__input" required placeholder="Search">
+</div>
+
+  <div id="profilearea"></div>
 </body>
 
 <script>
 
-info = [['1','User1','New Delhi','Working at Google','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
-['2','User2','Bangalore','Working at Oneplus','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
-['3','User3','Mumbai','Working at Google','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
-['4','User4','United Kingdom','Working at Meta','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
-['5','User5','USA','Working at Microsoft','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg'],
-['6','User6','New Delhi','Studying B.Tech at BVCOE','https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg']]
+  info = [
+    ["101", "Aarav Sharma", "+91 9876543210", "aarav.sharma@example.com", "12, MG Road", "Delhi", "Delhi", "India", "Software Engineer", "Infosys", [["2018", "Junior Developer at Wipro", "Worked on Java-based web applications."], ["2021", "Software Engineer at Infosys", "Led a team to develop enterprise-grade software solutions."]], "A passionate coder with experience in Java and Python.", "https://th.bing.com/th/id/OIP.FB_zZf1kLuKf9_i2FUCESgHaLH?rs=1&pid=ImgDetMain"],
+    ["102", "Priya Verma", "+91 9876543211", "priya.verma@example.com", "45, Park Street", "Mumbai", "Maharashtra", "India", "Marketing Manager", "Tata Consultancy Services", [["2016", "Marketing Executive at Ogilvy", "Focused on digital campaigns and social media marketing."], ["2020", "Marketing Manager at TCS", "Oversaw large-scale digital marketing initiatives."]], "Expert in digital marketing strategies and content creation.", "https://th.bing.com/th/id/OIP.GPFEY6kfgxbsja6gmrW6rwAAAA?rs=1&pid=ImgDetMain"],
+    ["103", "Rohan Gupta", "+91 9876543212", "rohan.gupta@example.com", "88, Indira Nagar", "Bangalore", "Karnataka", "India", "Data Scientist", "Flipkart", [["2017", "Data Analyst at IBM", "Analyzed large datasets to provide actionable insights."], ["2019", "Data Scientist at Flipkart", "Developed machine learning algorithms for personalized recommendations."]], "Data enthusiast with a deep interest in AI and machine learning.", "https://www.cameraegg.org/wp-content/uploads/2016/01/Nikon-D500-Sample-Images-2.jpg"],
+    ["104", "Sneha Patil", "+91 9876543213", "sneha.patil@example.com", "10, Shivaji Park", "Pune", "Maharashtra", "India", "Graphic Designer", "Wipro", [["2019", "Junior Designer at Infosys", "Worked on designing user interfaces for mobile apps."], ["2021", "Graphic Designer at Wipro", "Designed engaging digital marketing assets."]], "Creative graphic designer with expertise in UI/UX.", "https://www.dailycameranews.com/wp-content/uploads/2018/02/canon-eos-m50-sample-images-05.jpeg"],
+    ["105", "Amit Singh", "+91 9876543214", "amit.singh@example.com", "67, Sarojini Nagar", "Lucknow", "Uttar Pradesh", "India", "Sales Executive", "HCL Technologies", [["2017", "Sales Representative at Reliance Jio", "Handled client acquisition and sales growth."], ["2020", "Sales Executive at HCL", "Managed key accounts and consistently exceeded targets."]], "Dynamic sales professional with a track record of exceeding targets.", "https://th.bing.com/th/id/R.b46ab657e8d8ac19a6febd2a800f75d1?rik=OHMRkhqyJqBFlg&riu=http%3a%2f%2fwww.ricoh-imaging.co.jp%2fenglish%2fproducts%2fxg-1%2fex%2fimg%2fex-pic07.jpg&ehk=j38QJyEs1kWfA%2bnQbxutVjeIh5dxS%2bxPVCJ%2brc2M3Zw%3d&risl=1&pid=ImgRaw&r=0"],
+    ["106", "Kavya Nair", "+91 9876543215", "kavya.nair@example.com", "21, Vytilla", "Kochi", "Kerala", "India", "HR Manager", "Cognizant", [["2016", "HR Executive at Infosys", "Led recruitment drives and employee engagement programs."], ["2020", "HR Manager at Cognizant", "Managed HR operations and improved talent retention."]], "Skilled in recruitment, training, and employee relations.", "https://th.bing.com/th/id/OIP.fqjaIVihNHDoHo7LwlWDqwHaE7?rs=1&pid=ImgDetMain"],
+    ["107", "Manish Desai", "+91 9876543216", "manish.desai@example.com", "34, Race Course Road", "Ahmedabad", "Gujarat", "India", "Financial Analyst", "ICICI Bank", [["2017", "Junior Analyst at Axis Bank", "Performed financial analysis and reporting."], ["2020", "Financial Analyst at ICICI", "Specialized in financial modeling and risk analysis."]], "Strong background in financial modeling and risk analysis.", "https://www.cameraegg.org/wp-content/uploads/2016/01/Nikon-D500-Sample-Images-3.jpg"],
+    ["108", "Pooja Reddy", "+91 9876543217", "pooja.reddy@example.com", "98, Banjara Hills", "Hyderabad", "Telangana", "India", "Software Tester", "Microsoft India", [["2018", "Test Engineer at Cognizant", "Conducted manual and automated testing of software."], ["2020", "Software Tester at Microsoft", "Led quality assurance for major software releases."]], "Quality-driven software tester with a keen eye for details.", "https://th.bing.com/th/id/OIP.N0AtQhkKsLW3Zys2wr4U4AAAAA?rs=1&pid=ImgDetMain"],
+    ["109", "Vikram Sethi", "+91 9876543218", "vikram.sethi@example.com", "76, Ring Road", "Jaipur", "Rajasthan", "India", "Product Manager", "Paytm", [["2016", "Product Developer at Snapdeal", "Collaborated with cross-functional teams to deliver new product features."], ["2020", "Product Manager at Paytm", "Led the development and launch of new payment features."]], "Expert in product lifecycle management and cross-functional team leadership.", "https://i0.wp.com/www.dailycameranews.com/wp-content/uploads/2015/08/AF-S-NIKKOR-200-500mm-f5.6e-ed-vr-lesn-sample-images-1.jpg?ssl=1"],
+    ["110", "Anjali Mehta", "+91 9876543219", "anjali.mehta@example.com", "14, Church Street", "Chennai", "Tamil Nadu", "India", "Business Analyst", "Zoho Corporation", [["2018", "Junior Analyst at TCS", "Assisted in the analysis and documentation of business processes."], ["2020", "Business Analyst at Zoho", "Implemented and optimized business workflows."]], "Proficient in business analysis, financial modeling, and stakeholder communication.", "https://th.bing.com/th/id/R.c002f934e1f040498f198a632e6adccc?rik=%2b5GS9jcFjD4KXg&riu=http%3a%2f%2fwww.cameraegg.org%2fwp-content%2fuploads%2f2012%2f09%2fnikon-d600-sample-images.jpg&ehk=711QrJdIO8zFSeTR4V7jZeJVcOjX7jTba0oQ93rP0Mo%3d&risl=&pid=ImgRaw&r=0"],
+    ["111", "Abhinav Kapoor", "+91 9876543220", "abhinav.kapoor@example.com", "56, Rajiv Chowk", "Gurgaon", "Haryana", "India", "Network Engineer", "Bharti Airtel", [["2017", "Network Support Engineer at Vodafone", "Provided troubleshooting and network maintenance support."], ["2020", "Network Engineer at Bharti Airtel", "Managed and optimized network infrastructure."]], "Experienced network engineer with a focus on system stability and uptime.", "https://th.bing.com/th/id/R.06d12fb83f5b23a7aa0b6a6b7c72f132?rik=NhlshKX6Rm%2fLfw&riu=http%3a%2f%2fwww.cameraegg.org%2fwp-content%2fuploads%2f2015%2f03%2fNikon-D5500-sample-images-2.jpg&ehk=8pJQWxg7OPyS%2fqUkwK4oROW5LajqA4NgCbbLWeCRo7g%3d&risl=&pid=ImgRaw&r=0"],
+    ["112", "Sanya Rao", "+91 9876543221", "sanya.rao@example.com", "33, Brigade Road", "Bangalore", "Karnataka", "India", "Content Writer", "Amazon India", [["2018", "Content Specialist at Times Group", "Produced and edited content for web and print publications."], ["2020", "Content Writer at Amazon", "Created engaging content for Amazon's e-commerce platform."]], "Skilled in writing, editing, and developing engaging content.", "https://2.img-dpreview.com/files/p/E~TS940x788~articles/3925134721/0266554465.jpeg"],
+    ["113", "Karan Bajaj", "+91 9876543222", "karan.bajaj@example.com", "19, Lal Bagh", "Indore", "Madhya Pradesh", "India", "Civil Engineer", "Larsen & Toubro", [["2017", "Junior Engineer at Hindustan Construction Company", "Supervised construction site activities."], ["2020", "Civil Engineer at Larsen & Toubro", "Managed large-scale infrastructure projects."]], "Experienced civil engineer with expertise in construction project management.", "https://photographylife.com/wp-content/uploads/2023/05/nikon-z8-00006-1536x1024.jpg"],
+    ["114", "Isha Dutta", "+91 9876543223", "isha.dutta@example.com", "73, Camac Street", "Kolkata", "West Bengal", "India", "Digital Marketing Specialist", "Reliance Jio", [["2017", "Marketing Coordinator at Flipkart", "Coordinated marketing strategies and SEO campaigns."], ["2020", "Digital Marketing Specialist at Reliance Jio", "Spearheaded digital marketing initiatives and growth strategies."]], "Strategist with expertise in SEO, SEM, and online brand management.", "https://cdn.photographylife.com/wp-content/uploads/2014/06/Nikon-D810-Image-Sample-6.jpg"],
+    ["115", "Rahul Chawla", "+91 9876543224", "rahul.chawla@example.com", "22, Boring Road", "Patna", "Bihar", "India", "Mechanical Engineer", "L&T Construction", [["2016", "Junior Engineer at Tata Steel", "Assisted in manufacturing operations and process optimization."], ["2020", "Mechanical Engineer at L&T", "Led mechanical projects in construction engineering."]], "Mechanical engineer with solid knowledge of manufacturing processes.", "https://dl.fujifilm-x.com/global/products/cameras/x-t3/sample-images/ff_x_t3_002.JPG"],
+    ["116", "Meera Kulkarni", "+91 9876543225", "meera.kulkarni@example.com", "90, Narayan Peth", "Pune", "Maharashtra", "India", "UX Designer", "TCS", [["2017", "UX Designer at Infosys", "Designed intuitive user experiences for web platforms."], ["2020", "UX Designer at TCS", "Led UX design for enterprise-level software solutions."]], "Creative and user-centric designer with a passion for improving user experiences.", "https://www.dailycameranews.com/wp-content/uploads/2013/10/nikon_d610_sample_images_04.jpg"],
+    ["117", "Dev Joshi", "+91 9876543226", "dev.joshi@example.com", "15, Jayanagar", "Bangalore", "Karnataka", "India", "Mobile Developer", "Zomato", [["2018", "Mobile Developer at Paytm", "Developed mobile applications for Android devices."], ["2020", "Mobile Developer at Zomato", "Led mobile app enhancements for food delivery services."]], "Expert in mobile application development with a focus on Android and iOS.", "https://dl.fujifilm-x.com/global/products/lenses/xf30mmf28-r-lm-wr-macro/sample-images/xf30mmf28-r-lm-wr-macro_sample_06_zxcv.jpg"],
+    ["118", "Neha Pandey", "+91 9876543227", "neha.pandey@example.com", "71, Hazratganj", "Lucknow", "Uttar Pradesh", "India", "Software Engineer", "Google", [["2017", "Software Developer at Microsoft", "Developed cloud-based software solutions."], ["2020", "Software Engineer at Google", "Worked on AI-driven software applications."]], "Passionate about software development, with expertise in AI solutions.", "https://www.cameraegg.org/wp-content/uploads/2013/10/Nikon-D610-Sample-Images.jpg"],
+    ["119", "Yash Kapoor", "+91 9876543228", "yash.kapoor@example.com", "40, Sector 18", "Noida", "Uttar Pradesh", "India", "DevOps Engineer", "Adobe", [["2016", "Infrastructure Engineer at HCL", "Managed cloud infrastructure and server maintenance."], ["2020", "DevOps Engineer at Adobe", "Automated deployment pipelines and optimized CI/CD workflows."]], "DevOps engineer skilled in automation, CI/CD pipelines, and cloud solutions.", "https://cdn.hasselblad.com/015a3f388b5984860913a5578f0a344a9d9dd2e0_hans-thumb1.jpg"],
+    ["120", "Swati Khandelwal", "+91 9876543229", "swati.khandelwal@example.com", "11, Dadar West", "Mumbai", "Maharashtra", "India", "Operations Manager", "Mahindra & Mahindra", [["2016", "Operations Executive at Infosys", "Streamlined internal processes for better efficiency."], ["2020", "Operations Manager at Mahindra", "Led operational strategies and optimized workflow management."]], "Efficient manager with a focus on streamlining processes and improving productivity.", "https://4.bp.blogspot.com/--vODCYVd63g/VBgQ_eUqduI/AAAAAAAAQ2I/rgWsGIdDoRk/s1600/Canon%2BEOS%2B7D%2BMark%2BII%2BSample%2BJPEG%2BImage%2B04.jpg"],
+    ["121", "Vivek Chauhan", "+91 9876543230", "vivek.chauhan@example.com", "25, VIP Road", "Chandigarh", "Chandigarh", "India", "IT Consultant", "IBM", [["2017", "IT Support Specialist at HCL", "Provided tech support for various clients."], ["2021", "IT Consultant at IBM", "Advised on IT infrastructure and cloud solutions."]], "Expert in providing IT solutions and infrastructure consultation.", "https://www.magezinepublishing.com/equipment/images/equipment/D850-6542/large/Nikon-D850-iso10000-DSC_0300_1503513309.jpg"],
+    ["122", "Ayesha Khan", "+91 9876543231", "ayesha.khan@example.com", "42, Central Avenue", "Bhopal", "Madhya Pradesh", "India", "Project Manager", "Accenture", [["2015", "Project Coordinator at Capgemini", "Coordinated IT projects and ensured timely delivery."], ["2019", "Project Manager at Accenture", "Managed cross-functional teams and led complex IT projects."]], "Seasoned project manager with expertise in handling large-scale IT projects.", "https://captainkimo.com/wp-content/uploads/2012/06/canon-5dmk2.jpg"],
+    ["123", "Ravi Sharma", "+91 9876543232", "ravi.sharma@example.com", "78, Park Avenue", "Surat", "Gujarat", "India", "Cloud Architect", "Amazon Web Services", [["2016", "Cloud Engineer at TCS", "Worked on cloud migration and infrastructure setup."], ["2020", "Cloud Architect at AWS", "Designed scalable cloud solutions for enterprises."]], "Cloud expert with experience in designing and deploying cloud architectures.", "https://th.bing.com/th/id/OIP.fIWMHp5slxzDYBQekvyRjgAAAA?rs=1&pid=ImgDetMain"],
+    ["124", "Pallavi Joshi", "+91 9876543233", "pallavi.joshi@example.com", "18, Golf Course Road", "Jaipur", "Rajasthan", "India", "Content Strategist", "Times Group", [["2017", "Content Writer at NDTV", "Created engaging news content for digital platforms."], ["2020", "Content Strategist at Times Group", "Led content development and editorial strategies."]], "Creative strategist with expertise in digital content and media.", "https://images.fonearena.com/blog/wp-content/uploads/2021/02/SamsungGalaxyS21Ultra_31-scaled.jpg"] ,
+    ["125", "Aditya Nair", "+91 9876543234", "aditya.nair@example.com", "67, Marine Drive", "Mumbai", "Maharashtra", "India", "Cybersecurity Specialist", "KPMG", [["2017", "Security Analyst at Wipro", "Conducted security audits and vulnerability assessments."], ["2021", "Cybersecurity Specialist at KPMG", "Developed and implemented cybersecurity strategies."]], "Cybersecurity expert with a focus on risk management and compliance.", "https://petapixel.com/assets/uploads/2017/03/samplejpeg.jpg"],
+    ["126", "Sonia Mehta", "+91 9876543235", "sonia.mehta@example.com", "32, South End Circle", "Bangalore", "Karnataka", "India", "Data Analyst", "Deloitte", [["2018", "Junior Data Analyst at Infosys", "Analyzed datasets to provide business insights."], ["2021", "Data Analyst at Deloitte", "Handled large datasets and provided analytics solutions for clients."]], "Proficient data analyst with expertise in business intelligence and data visualization.", "https://phlearn.com/wp-content/uploads/2019/12/Opening-Editing-and-Saving-in-Photoshop-after.jpg?fit=2000%2C1333&quality=99&strip=all"],
+    ["127", "Arjun Rao", "+91 9876543236", "arjun.rao@example.com", "29, Kalyani Nagar", "Pune", "Maharashtra", "India", "Mechanical Engineer", "Tata Motors", [["2017", "Assistant Engineer at Tata Steel", "Assisted in mechanical design and maintenance."], ["2020", "Mechanical Engineer at Tata Motors", "Led engineering projects for automobile manufacturing."]], "Mechanical engineer experienced in design, manufacturing, and maintenance.", "https://cdn.hasselblad.com/hasselblad-com/6cb604081ef3086569319ddb5adcae66298a28c5_x1d-ii-sample-01-web.jpg?auto=format&q=97"],
+    ["128", "Divya Sinha", "+91 9876543237", "divya.sinha@example.com", "84, Hitech City", "Hyderabad", "Telangana", "India", "UI Developer", "Infosys", [["2016", "Front-end Developer at Cognizant", "Worked on designing responsive web pages."], ["2019", "UI Developer at Infosys", "Developed and optimized user interfaces for enterprise software."]], "UI developer with a passion for creating intuitive and user-friendly web experiences.", "https://budgetstockphoto.com/samples/pics/swan.jpg"],
+    ["129", "Nikhil Thakur", "+91 9876543238", "nikhil.thakur@example.com", "53, Sector 21", "Gurgaon", "Haryana", "India", "SEO Specialist", "Flipkart", [["2016", "SEO Executive at Snapdeal", "Optimized product pages for search engines."], ["2019", "SEO Specialist at Flipkart", "Led SEO efforts to improve organic search rankings."]], "SEO expert with proven success in increasing web traffic through on-page and off-page strategies.", "https://www.popphoto.com/uploads/2022/09/23/Jeff-14-scaled.jpg"],
+    ["130", "Shreya Tiwari", "+91 9876543239", "shreya.tiwari@example.com", "25, Residency Road", "Lucknow", "Uttar Pradesh", "India", "Graphic Designer", "Adobe", [["2018", "Junior Graphic Designer at TCS", "Created marketing collateral for clients."], ["2021", "Graphic Designer at Adobe", "Designed visuals for software product interfaces."]], "Creative designer with a focus on digital and print media.", "https://cdn.photographylife.com/wp-content/uploads/2017/08/Nikon-D850-Sample-Image-1.jpg"],
+    ["131", "Rajesh Kumar", "+91 9876543240", "rajesh.kumar@example.com", "15, Ashok Nagar", "Chennai", "Tamil Nadu", "India", "Backend Developer", "Zoho Corporation", [["2017", "Junior Developer at HCL", "Worked on backend systems and databases."], ["2020", "Backend Developer at Zoho", "Optimized and scaled backend services for enterprise applications."]], "Backend developer with a strong focus on performance and scalability.", "https://photographylife.com/wp-content/uploads/2020/08/Nikon-Z-20mm-f1.8-S-Image-Sample-9.jpg"],
+    ["132", "Amit Patel", "+91 9876543241", "amit.patel@example.com", "77, New Delhi", "New Delhi", "Delhi", "India", "Financial Planner", "HDFC Bank", [["2018", "Financial Advisor at ICICI", "Provided investment advice and financial planning services."], ["2021", "Financial Planner at HDFC", "Developed financial strategies for clients and managed portfolios."]], "Expert in financial planning and investment strategies.", "https://4.bp.blogspot.com/-Es8QY2v114A/VBgRIGpesrI/AAAAAAAAQ2Q/YaFzl83NIv0/s1600/Canon%2BEOS%2B7D%2BMark%2BII%2BSample%2BJPEG%2BImage%2B05.jpg"],
+    ["133", "Rina Agarwal", "+91 9876543242", "rina.agarwal@example.com", "8, Connaught Place", "Delhi", "Delhi", "India", "Event Coordinator", "Eventz", [["2017", "Event Assistant at PVR", "Assisted in organizing corporate and private events."], ["2020", "Event Coordinator at Eventz", "Managed large-scale events and client relations."]], "Skilled in event planning and coordination with a focus on client satisfaction.", "https://www.dailycameranews.com/wp-content/uploads/2013/10/nikon_d610_sample_images_01.jpg"],
+    ["134", "Tarun Joshi", "+91 9876543243", "tarun.joshi@example.com", "56, Vasant Kunj", "Delhi", "Delhi", "India", "Civil Engineer", "L&T", [["2016", "Site Engineer at Gammon India", "Supervised construction site operations and quality control."], ["2019", "Civil Engineer at L&T", "Managed infrastructure projects and ensured compliance with safety standards."]], "Experienced civil engineer with a strong background in construction management.", "https://photographylife.com/wp-content/uploads/2023/05/Nikon-Z8-Official-Samples-00021.jpg"],
+    ["135", "Meenal Kapoor", "+91 9876543244", "meenal.kapoor@example.com", "92, Brigade Road", "Bangalore", "Karnataka", "India", "Business Development Manager", "Infosys", [["2018", "Sales Executive at Tech Mahindra", "Developed business opportunities and managed client accounts."], ["2021", "Business Development Manager at Infosys", "Led business development strategies and expanded market presence."]], "Business development professional with a focus on strategic growth and client acquisition.", "https://samples-files.com/samples/Images/jpg/1920-1080-sample.jpg"],
+    ["136", "Ankit Singh", "+91 9876543245", "ankit.singh@example.com", "48, New Town", "Kolkata", "West Bengal", "India", "Quality Assurance Engineer", "Wipro", [["2017", "QA Tester at HCL", "Performed software testing and quality assurance."], ["2020", "Quality Assurance Engineer at Wipro", "Led QA teams and implemented testing strategies for software products."]], "Detail-oriented QA engineer with experience in software testing and process improvement.", "https://www.cameralabs.com/wp-content/uploads/2022/09/fujifilm-x-h2-sample-image-DSCF0044.jpg"],
+    ["137", "Nisha Desai", "+91 9876543246", "nisha.desai@example.com", "35, Chetpet", "Chennai", "Tamil Nadu", "India", "Web Developer", "Tech Mahindra", [["2018", "Front-end Developer at Infosys", "Developed and maintained client-side web applications."], ["2021", "Web Developer at Tech Mahindra", "Designed and implemented web solutions for enterprise clients."]], "Web developer with expertise in front-end technologies and responsive design.", "https://live.staticflickr.com/5487/14606897026_b11e169b81_b.jpg"],
+    ["138", "Vikas Sharma", "+91 9876543247", "vikas.sharma@example.com", "64, Rishikesh", "Dehradun", "Uttarakhand", "India", "Product Designer", "Adobe", [["2016", "UX Designer at TCS", "Worked on user experience and interface design projects."], ["2020", "Product Designer at Adobe", "Designed user-centric product features and interfaces."]], "Creative product designer with a focus on user experience and interface design.", "https://fthmb.tqn.com/M4vd2y1a6SHUAlMYYUQExR1Jnlc=/3867x2578/filters:fill(auto,1)/Shooting-in-RAW-TIFF-JPEG-5682ac103df78ccc15bfef42.jpg"],
+    ["139", "Priti Nair", "+91 9876543248", "priti.nair@example.com", "16, M.G. Road", "Bangalore", "Karnataka", "India", "Database Administrator", "Oracle", [["2017", "Database Analyst at IBM", "Managed and optimized database systems."], ["2020", "Database Administrator at Oracle", "Oversaw database performance and security for enterprise clients."]], "Database administrator with expertise in database management and optimization.", "https://photographylife.com/wp-content/uploads/2023/04/Nikon-Z-26mm-f2.8-Review-Sample-Image-Photography-Life00027.jpg"],
+    ["140", "Raj Kumar", "+91 9876543249", "raj.kumar@example.com", "55, Main Street", "Chandigarh", "Chandigarh", "India", "Marketing Analyst", "Cognizant", [["2016", "Marketing Intern at Capgemini", "Assisted in market research and campaign analysis."], ["2019", "Marketing Analyst at Cognizant", "Conducted market analysis and developed marketing strategies."]], "Marketing analyst with skills in market research and strategic planning.", "https://th.bing.com/th/id/R.1b881f26ea40f8759c0cb798342d6463?rik=cXQFtRWB7hJ7Zg&riu=http%3a%2f%2fwww.cameraegg.org%2fwp-content%2fuploads%2f2017%2f04%2fnikon-d7500-sample-images-4.jpg&ehk=vwj%2bfPx1AvQpK7uu7TtMAjrfrcnOCoPtBvgtLYEkleI%3d&risl=&pid=ImgRaw&r=0"],
+    ["141", "Sunita Bhardwaj", "+91 9876543250", "sunita.bhardwaj@example.com", "24, Sector 45", "Noida", "Uttar Pradesh", "India", "HR Coordinator", "Reliance", [["2017", "HR Assistant at Wipro", "Supported HR operations and employee services."], ["2020", "HR Coordinator at Reliance", "Managed recruitment processes and employee relations."]], "HR coordinator with experience in recruitment and employee management.", "https://www.cameraegg.org/wp-content/uploads/2013/10/Fujifilm-X-E2-Sample-Images.jpg"],
+    ["142", "Amitabh Kumar", "+91 9876543251", "amitabh.kumar@example.com", "45, S.P. Road", "Hyderabad", "Telangana", "India", "Research Scientist", "Bharat Biotech", [["2016", "Lab Technician at Ranbaxy", "Conducted experiments and managed laboratory equipment."], ["2019", "Research Scientist at Bharat Biotech", "Led research projects and developed new pharmaceutical products."]], "Research scientist specializing in pharmaceutical development and laboratory research.", "https://3.img-dpreview.com/files/p/E~C334x0S1333x1333T1200x1200~articles/5602620128/x100v_sample.jpeg"],
+    ["143", "Riya Kapoor", "+91 9876543252", "riya.kapoor@example.com", "27, Model Town", "Delhi", "Delhi", "India", "Software Architect", "SAP", [["2017", "Software Engineer at Wipro", "Designed and developed software applications."], ["2020", "Software Architect at SAP", "Architected and oversaw the development of enterprise software solutions."]], "Experienced software architect with a focus on building scalable and robust software systems.", "https://webneel.com/daily/sites/default/files/images/daily/08-2018/2-nature-photography-besmirhamiti.jpg"],
+    ["144", "Kiran Bhatia", "+91 9876543253", "kiran.bhatia@example.com", "88, New Colony", "Faridabad", "Haryana", "India", "Environmental Consultant", "GreenTech", [["2018", "Environmental Analyst at EIL", "Conducted environmental impact assessments and compliance reviews."], ["2021", "Environmental Consultant at GreenTech", "Provided consulting services for sustainable practices and environmental management."]], "Environmental consultant with expertise in sustainability and regulatory compliance.", "https://products.softsolutionslimited.com/wp-content/uploads/images/blog/image_files/sample.tif.jpg"],
+    ["145", "Gaurav Malhotra", "+91 9876543254", "gaurav.malhotra@example.com", "72, Tech Park", "Pune", "Maharashtra", "India", "AI Engineer", "Google", [["2016", "AI Researcher at IBM", "Worked on artificial intelligence research and development."], ["2020", "AI Engineer at Google", "Developed and implemented AI algorithms for various applications."]], "AI engineer with a strong background in research and development of artificial intelligence technologies.", "https://th.bing.com/th/id/OIP.nEnQnOp7hbY7QFH8vHi2owAAAA?rs=1&pid=ImgDetMain"],
+    ["146", "Sonia Kapoor", "+91 9876543255", "sonia.kapoor@example.com", "19, Hill Road", "Mumbai", "Maharashtra", "India", "Legal Advisor", "Law Associates", [["2017", "Legal Associate at L&L Partners", "Provided legal advice and drafted legal documents."], ["2020", "Legal Advisor at Law Associates", "Advised clients on legal matters and represented them in court."]], "Legal advisor with experience in providing legal counsel and representation.", "https://phototraces.b-cdn.net/wp-content/uploads/2021/01/id_Free_RAW_Photos_for_Editing_05_Unedited.jpg.jpg"],
+    ["147", "Neha Sharma", "+91 9876543256", "neha.sharma@example.com", "33, Garden Avenue", "Delhi", "Delhi", "India", "E-commerce Manager", "Snapdeal", [["2018", "Product Manager at Amazon", "Managed product listings and optimized sales strategies."], ["2021", "E-commerce Manager at Snapdeal", "Oversaw online sales and marketing strategies for e-commerce."]], "E-commerce manager skilled in optimizing online sales and marketing strategies.", "https://i0.wp.com/thenewcamera.com/wp-content/uploads/2016/01/nikon-D500-Sample-image-lar.jpg"],
+    ["148", "Pradeep Yadav", "+91 9876543257", "pradeep.yadav@example.com", "21, Lake View", "Bangalore", "Karnataka", "India", "Network Administrator", "Cisco", [["2017", "IT Support Specialist at HP", "Provided technical support and managed network systems."], ["2020", "Network Administrator at Cisco", "Designed and maintained network infrastructure for enterprise clients."]], "Network administrator with expertise in designing and maintaining network systems.", "https://photographylife.com/wp-content/uploads/2020/01/iPhone-11-Pro-Image-Sample-71.jpg"],
+    ["149", "Komal Singh", "+91 9876543258", "komal.singh@example.com", "76, Business Park", "Gurgaon", "Haryana", "India", "Data Scientist", "Accenture", [["2016", "Data Analyst at Genpact", "Analyzed data sets and provided actionable insights."], ["2019", "Data Scientist at Accenture", "Developed predictive models and machine learning algorithms."]], "Data scientist with experience in machine learning and data analysis.", "https://photographylife.com/wp-content/uploads/2023/01/Nikon-Z-MC-105mm-f2.8-VR-S-Macro-Lens-Sample-Photo-Deer-Making-Funny-Expression.jpg"],
+    ["150", "Deepak Mehta", "+91 9876543259", "deepak.mehta@example.com", "88, Sunrise Road", "Hyderabad", "Telangana", "India", "Product Manager", "Microsoft", [["2017", "Associate Product Manager at Oracle", "Supported product development and market research."], ["2020", "Product Manager at Microsoft", "Led product strategy and managed product lifecycle."]], "Product manager with a focus on product strategy and lifecycle management.", "https://wallpapercave.com/wp/wp3819690.jpg"]
+
+]
 
 
+  const searchbox = document.getElementById("searchbox")
+  const searchicon = document.getElementById("searchicon")
+
+  searchicon.addEventListener('click',()=> {search()})
+  searchbox.addEventListener('keydown', (event)=>{
+    if (event.key == 'Enter'){
+      search()
+    }
+  })
 
     var profilearea = document.getElementById('profilearea')
-    for (let i of info){
-        console.log(i)
-        let div = document.createElement('div')
-        profilearea.appendChild(div)
-        div.className = 'idblock'
-        div.id = i[0]
-        let divnew = document.getElementById(i[0])
-        let img = document.createElement('img')
-        img.src = i[4]
-        img.className = 'profilepic'
-        let h2 = document.createElement('h2')
-        h2.textContent = i[1]
-        let h3 = document.createElement('h3')
-        h3.textContent = i[2]
-        let br = document.createElement('br')
-        h3.appendChild(br)
-        let label = document.createElement('label')
-        label.textContent = i[3]
-        label.id= i[0]
-        label.style.cursor = 'pointer'
-        h3.appendChild(label)
+    function addprofiles(inputlist){
+      while (profilearea.firstChild) {
+        profilearea.removeChild(profilearea.firstChild);
+      }
+      for (let i of inputlist){
+          let div = document.createElement('div')
+          profilearea.appendChild(div)
+          div.className = 'idblock'
+          div.id = i[0]
+          let divnew = document.getElementById(i[0])
+          let img = document.createElement('img')
+          img.src = i[12]
+          img.className = 'profilepic'
+          let h2 = document.createElement('h2')
+          h2.textContent = i[1]
+          let h3 = document.createElement('h3')
+          h3.textContent = i[8]
+          let br = document.createElement('br')
+          h3.appendChild(br)
+          let label = document.createElement('label')
+          label.textContent = i[5]
+          label.id= i[0]
+          label.style.cursor = 'pointer'
+          h3.appendChild(label)
 
-        divnew.appendChild(img)
-        divnew.appendChild(h2)
-        divnew.appendChild(h3)
+          divnew.appendChild(img)
+          divnew.appendChild(h2)
+          divnew.appendChild(h3)
 
-        const childElements = divnew.children;
-        for (let i = 0; i < childElements.length; i++) {
-            childElements[i].id = divnew.id;
-        }
-        divnew.addEventListener('click', (event)=> openprofilepage(event))
-        
-        
+          const childElements = divnew.children;
+          for (let i = 0; i < childElements.length; i++) {
+              childElements[i].id = divnew.id;
+          }
+          divnew.addEventListener('click', (event)=> openprofilepage(event))
+          
+          
 
+      }
+  }
+  addprofiles(info)
+
+
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
     }
 
-
-
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
 
     function openprofilepage(event){
         //Make the function to show the profile page of each user on clicking
-        localStorage.setItem('id',event.target.id)
-        console.log(localStorage.getItem('id'))
+        for (let i of info){
+          if(event.target.id == i[0]){
+            localStorage.setItem('profileinfo',JSON.stringify(i))
+            document.location.href = 'profileview.html'
+          }
+        }
+
         //redirect to the new profile page and retrieve the id from the local storage followed by retrieving all the data for that particular id
     }
+
+    function search(){
+      let searchresult=[]
+      //search for names ids, etc
+      let searchitem = searchbox.value.toLowerCase()
+      if(searchitem != ""){
+        for (let i of info){
+          for(let j of i){
+            if (typeof(j) === "string"){
+              j = j.toLowerCase()
+              if(j.includes(searchitem) && !searchresult.includes(i)){
+                searchresult.push(i)
+              }
+            }
+            else{
+              for (let k of j){
+                k[1] = k[1].toLowerCase()
+                if(k[1].includes(searchitem) && !searchresult.includes(i)){
+                  searchresult.push(i)
+                }
+              }
+            }
+          }
+        }
+        addprofiles(searchresult)
+      }
+    }
+
+    
 
 
 
