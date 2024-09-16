@@ -393,6 +393,7 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  z-index: 10;
 }
 
 .sidenav a {
@@ -445,6 +446,7 @@ body {
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">Explore</a>
     <a href="#">Community</a>
+    <a href="./profilespage.html">Aluminus</a>
     <a href="#">About Us</a>
     <a href="#" id="userinfo"><label id="username"><br>User1</label><img id="userimg" src="https://photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"></a>
   </div>
@@ -485,7 +487,7 @@ body {
     </div>
     <div class="card-section" id="experience">
       <div class="card-content">
-        <div class="card-subtitle">WORK EXPERIENCE</div>
+        <div class="card-subtitle">MY TIMELINE</div>
         <div class="card-timeline" id="card-timeline">
           
         </div>
@@ -512,7 +514,7 @@ body {
               <path d="M22 6l-10 7L2 6" /></svg><label id="profileemail"></label>
             
           </div>
-          <button class="contact-me">WORK TOGETHER</button>
+          <button class="contact-me" id="contact-me">WORK TOGETHER</button>
         </div>
       </div>
     </div>
@@ -537,6 +539,7 @@ body {
     var profileworkingas = document.getElementById('profileworkingas')
     var profileworkingat = document.getElementById('profileworkingat')
     var profileabout = document.getElementById('profileabout')
+    var contactme = document.getElementById('contact-me')
     profileimg.src = info[12]
     profilename.textContent = info[1]
     profileworkingas.textContent = info[8]
@@ -545,7 +548,6 @@ body {
     profileaddress.textContent = info[4]+", "+info[5]+", "+info[6]
     profileworkingat.textContent = "Working at " + info[9]
     profileabout.textContent = info[11]
-    console.log(profileemail)
 
 
     const buttons = document.querySelectorAll(".card-buttons button");
@@ -598,6 +600,10 @@ body {
         maindiv.appendChild(seconddiv)
         maindiv.appendChild(thirddiv)
         }
+
+    contactme.addEventListener('click',()=>{
+      window.location.href = 'mailto:'+info[3]
+    })
 
 </script>
 </html>
