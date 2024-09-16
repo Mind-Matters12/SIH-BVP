@@ -563,6 +563,7 @@ body {
 }
 .social-icon{
     height: 1.9rem;
+    color: grey;
 }
 .socials{
     display: flex;
